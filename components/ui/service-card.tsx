@@ -1,29 +1,43 @@
+"use client";
 import { HoverEffect } from "./card-hover-effect";
+import TextAnimationEffect from "./text-animation-effect";
 
 export function CardHoverEffect() {
   return (
-    <div className="max-w-5xl mx-auto px-8">
+    <div className="text-center max-w-5xl mx-auto px-8">
+      <TextAnimationEffect
+        text="Services I Provide"
+        variants={{
+          hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
+          visible: {
+            filter: "blur(0px)",
+            opacity: 1,
+            y: 0,
+            transition: { ease: "linear" },
+          },
+        }}
+      />
       <HoverEffect items={projects} />
     </div>
   );
 }
 export const projects = [
   {
-    title: "Stripe",
+    title: "Service 1",
     description:
-      "A technology company that builds economic infrastructure for the internet.",
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat!",
     link: "https://stripe.com",
   },
   {
-    title: "Netflix",
+    title: "Service 2",
     description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat!",
     link: "https://netflix.com",
   },
   {
-    title: "Google",
+    title: "Service 3",
     description:
-      "A multinational technology company that specializes in Internet-related services and products.",
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat!",
     link: "https://google.com",
   },
 ];

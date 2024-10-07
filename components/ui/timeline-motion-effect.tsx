@@ -33,13 +33,9 @@ export function TimelineMotionEffect({ data }: { data: TimelineEntry[] }) {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10"
-    >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+    <div ref={containerRef}>
+      <div className="max-w-7xl text-center py-4 px-4 md:px-8 lg:px-10">
         <TextAnimationEffect
-          classname="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-3xl font-medium tracking-tight  md:text-5xl"
           text="Know me more"
           variants={{
             hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
@@ -51,13 +47,6 @@ export function TimelineMotionEffect({ data }: { data: TimelineEntry[] }) {
             },
           }}
         />
-
-        <p className="text-neutral-700 dark:text-neutral-300 text-md">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-          pariatur. Ut rem assumenda voluptatum ducimus possimus, quis enim ea
-          inventore eum ullam animi placeat impedit culpa nam non labore
-          dignissimos.
-        </p>
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">

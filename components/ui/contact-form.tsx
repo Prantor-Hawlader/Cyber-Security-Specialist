@@ -3,18 +3,31 @@ import React from "react";
 
 import { Label } from "./label";
 import { Input } from "./input";
+import { Textarea } from "./text-area";
+import TextAnimationEffect from "./text-animation-effect";
 
 import { cn } from "@/lib/utils";
-import { Textarea } from "./text-area";
 
 export function ContactForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
   };
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl  shadow-input bg-white dark:bg-black">
+      <TextAnimationEffect
+        text="Contact Me"
+        variants={{
+          hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
+          visible: {
+            filter: "blur(0px)",
+            opacity: 1,
+            y: 0,
+            transition: { ease: "linear" },
+          },
+        }}
+      />
+
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>

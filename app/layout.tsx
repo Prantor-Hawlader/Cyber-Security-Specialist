@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -45,9 +44,6 @@ export default function RootLayout({
           <div className="relative flex flex-col h-screen">
             <Navbar />
             <main className="w-full flex-grow">{children}</main>
-            <footer className="w-full flex items-center justify-center py-3">
-              <p className="text-primary"> Footer</p>
-            </footer>
           </div>
         </Providers>
       </body>

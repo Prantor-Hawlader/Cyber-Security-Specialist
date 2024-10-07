@@ -29,7 +29,7 @@ export const HoverEffect = ({
           className="relative group  block p-2 h-full w-full"
           href={item?.link}
         >
-          <EvervaultCard />
+          <EvervaultCard item={item} />
         </Link>
       ))}
     </div>

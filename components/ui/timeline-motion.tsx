@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { TimelineMotionEffect } from "./timeline-motion-effect";
 
 export function TimelineMotion() {
@@ -21,7 +19,7 @@ const DATA = [
           cupiditate deleniti nostrum necessitatibus quo fugit tenetur quos,
           perferendis quas quae?
         </p>
-        <div className="grid grid-cols-2 gap-4"></div>
+        <div className="grid grid-cols-2 gap-4" />
       </div>
     ),
   },
@@ -36,7 +34,7 @@ const DATA = [
           cumque.
         </p>
 
-        <div className="grid grid-cols-2 gap-4"></div>
+        <div className="grid grid-cols-2 gap-4" />
       </div>
     ),
   },
@@ -51,7 +49,7 @@ const DATA = [
           illo nesciunt ipsum!
         </p>
 
-        <div className="grid grid-cols-2 gap-4"></div>
+        <div className="grid grid-cols-2 gap-4" />
       </div>
     ),
   },

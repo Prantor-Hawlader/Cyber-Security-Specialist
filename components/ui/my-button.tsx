@@ -9,14 +9,14 @@ const SHUFFLE_TIME = 50;
 const CHARS = "!@#$%^&*():{};|,.<>/?";
 
 const MyButton = () => {
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<number | null>(null);
 
   const [text, setText] = useState(TARGET_TEXT);
 
   const scramble = () => {
     let pos = 0;
 
-    intervalRef.current = setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       const scrambled = TARGET_TEXT.split("")
         .map((char, index) => {
           if (pos / CYCLES_PER_LETTER > index) {
@@ -40,8 +40,10 @@ const MyButton = () => {
   };
 
   const stopScramble = () => {
-    clearInterval(intervalRef.current || undefined);
-
+    if (intervalRef.current !== null) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
     setText(TARGET_TEXT);
   };
 

@@ -37,7 +37,7 @@ const defaultViewport = { amount: 0.3, margin: "0px 0px 0px 0px" };
 const TextAnimationEffect = ({
   as = "h1",
   text,
-  classname = "",
+  classname = "my-10 text-slate-500 font-mono text-center text-6xl font-medium tracking-tight",
   viewport = defaultViewport,
   variants,
   direction = "down",
@@ -77,7 +77,7 @@ const TextAnimationEffect = ({
     <>
       <>
         <MotionComponent
-          className={cn(`inline-block text-white uppercase  `, classname)}
+          className={cn(`inline-block   `, classname)}
           initial="hidden"
           variants={containerVariants}
           viewport={viewport}
