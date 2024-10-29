@@ -1,52 +1,139 @@
 "use client";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
+import { z } from "zod";
 
 import { Label } from "./label";
 import { Input } from "./input";
 import { Textarea } from "./text-area";
-import TextAnimationEffect from "./text-animation-effect";
 
 import { cn } from "@/lib/utils";
+import { EmailFormData, getEmailConfig } from "@/action/email";
+import TextAnimationEffect from "./text-animation-effect";
+
+const EmailFormSchema = z.object({
+  user_name: z.string().min(1, "Name is required"),
+  user_email: z.string().email("Invalid email address"),
+  message: z.string().min(1, "Message is required"),
+});
 
 export function ContactForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const form = useRef<HTMLFormElement>(null);
+  const [emailConfig, setEmailConfig] = useState<{
+    serviceId?: string;
+    templateId?: string;
+    publicKey?: string;
+  }>({});
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<EmailFormData>({
+    resolver: zodResolver(EmailFormSchema),
+  });
+
+  useEffect(() => {
+    // Fetch email configuration on component mount
+    const fetchConfig = async () => {
+      try {
+        const config = await getEmailConfig();
+
+        setEmailConfig(config);
+      } catch (error) {
+        console.error("Failed to fetch email config:", error);
+        toast.error("Failed to initialize email service");
+      }
+    };
+
+    fetchConfig();
+  }, []);
+
+  const onSubmit = async (data: EmailFormData) => {
+    try {
+      if (
+        !emailConfig.serviceId ||
+        !emailConfig.templateId ||
+        !emailConfig.publicKey
+      ) {
+        throw new Error("Email configuration is missing");
+      }
+
+      if (!form.current) {
+        throw new Error("Form reference is missing");
+      }
+
+      const result = await emailjs.sendForm(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        form.current,
+        {
+          publicKey: emailConfig.publicKey,
+        }
+      );
+
+      if (result.text === "OK") {
+        toast.success("Message sent successfully!");
+        reset();
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      toast.error("Failed to send message. Please try again.");
+    }
   };
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl  shadow-input bg-white dark:bg-black">
-      <TextAnimationEffect
-        text="Contact Me"
-        variants={{
-          hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
-          visible: {
-            filter: "blur(0px)",
-            opacity: 1,
-            y: 0,
-            transition: { ease: "linear" },
-          },
-        }}
-      />
-
-      <form className="my-8" onSubmit={handleSubmit}>
+    <div className="max-w-md w-full rounded-none md:rounded-2xl  shadow-input ">
+      <div className="text-center">
+        <TextAnimationEffect
+          text="Contact Me"
+          variants={{
+            hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
+            visible: {
+              filter: "blur(0px)",
+              opacity: 1,
+              y: 0,
+              transition: { ease: "linear" },
+            },
+          }}
+        />
+      </div>
+      <form
+        ref={form}
+        className="my-8 justify-start"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input id="email" type="email" />
+          <Label htmlFor="name">Name</Label>
+          <Input required id="name" type="text" {...register("user_name")} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" type="text" />
+          <Label htmlFor="email">Email Address</Label>
+          <Input required id="email" type="email" {...register("user_email")} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="message">Your message</Label>
-          <Textarea id="message" placeholder="I want to tell you that..." />
+          <Textarea
+            required
+            id="message"
+            placeholder="I want to tell you that..."
+            {...register("message")}
+          />
         </LabelInputContainer>
 
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+          disabled={isSubmitting}
           type="submit"
         >
-          Submit &rarr;
+          {isSubmitting ? "Sending..." : <p>Send Message &rarr;</p>}
+
           <BottomGradient />
         </button>
 

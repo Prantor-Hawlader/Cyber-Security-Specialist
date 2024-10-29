@@ -9,6 +9,7 @@ export default function Home() {
       <LampEffect />
       <CardHoverEffect />
       <TimelineMotion />
+  
       <ContactForm />
     </section>
   );
