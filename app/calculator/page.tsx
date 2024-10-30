@@ -1,13 +1,13 @@
-import React from "react";
-
-import CVSSCalculator from "@/components/CVSSCalculator";
 import "../../css/cvss.css";
+import dynamic from "next/dynamic";
+
 import { title } from "@/components/primitives";
 const Calculator = () => {
+  const CVSSCalculator = dynamic(import("@/components/CVSSCalculator"));
+
   return (
     <div className="mt-4 space-y-4" id="cvssboard">
       <h1 className={title({ color: "cyan", size: "sm" })}>
-        {" "}
         CVSS v3.1 Base Score Calculator
       </h1>
 
