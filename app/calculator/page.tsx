@@ -3,7 +3,9 @@ import dynamic from "next/dynamic";
 
 import { title } from "@/components/primitives";
 const Calculator = () => {
-  const CVSSCalculator = dynamic(() => import("@/components/CVSSCalculator"));
+  const CVSSCalculator = dynamic(() => import("@/components/CVSSCalculator"), {
+    ssr: false,
+  });
 
   return (
     <div className="mt-4 space-y-4" id="cvssboard">
