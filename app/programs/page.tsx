@@ -1,8 +1,12 @@
+import dynamic from "next/dynamic";
+
 import AddProgramBtn from "@/components/AddProgramBtn";
-import Companies from "@/components/Companies";
 import prisma from "@/db/prisma";
 
 const Programs = async () => {
+  const Companies = dynamic(() => import("@/components/Companies"), {
+    ssr: false,
+  });
   const programs = await prisma.program.findMany();
 
   return (

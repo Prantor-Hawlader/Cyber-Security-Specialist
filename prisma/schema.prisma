@@ -32,9 +32,9 @@ model Program {
   id        String   @id @default(cuid())
   name      String
   image     String?
-  summary   String
-  reference String
-  link      String
+  summary   String?
+  reference String?
+  link      String?
   inScope   String[]
   outScope  String[]
   rewards   String[]

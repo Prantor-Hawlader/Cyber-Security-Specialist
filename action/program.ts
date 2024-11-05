@@ -54,3 +54,17 @@ export async function createProgram(formData: FormData) {
     return { error: "Failed to create program" };
   }
 }
+
+export async function DeleteProgram(id: string) {
+  try {
+    await prisma.program.delete({
+      where: { id },
+    });
+
+    return { status: "success" };
+  } catch (error) {
+    return { error: "Failed to delete program" };
+  } finally {
+    revalidatePath(`/programs`);
+  }
+}

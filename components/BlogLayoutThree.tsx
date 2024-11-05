@@ -54,6 +54,7 @@ const BlogLayoutThree = ({ blog, session }: Props) => {
       {session && (
         <div className="flex flex-col justify-start gap-10">
           <BlogEditBtn blog={blog} />
+
           <DeleteButton blogId={blog.id} />
         </div>
       )}

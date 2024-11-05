@@ -1,52 +1,38 @@
 "use client";
 
 import React from "react";
-import { Button } from "@nextui-org/button";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  useDisclosure,
-} from "@nextui-org/modal";
 
 import { PlusIcon } from "./ui/PlusIcon";
 import BlogForm from "./BlogForm";
 
-const AddBlogBtn = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
+const AddBlogBtn = () => {
   return (
-    <div>
-      {" "}
-      <Button
-        className="bg-foreground text-background my-4"
-        endContent={<PlusIcon />}
-        size="sm"
-        onPress={onOpen}
-      >
-        Add New Blog
-      </Button>
-      <Modal
-        isOpen={isOpen}
-        placement="bottom-center"
-        scrollBehavior="inside"
-        onOpenChange={onOpenChange}
-      >
-        <ModalContent>
-          {() => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Create Program
-              </ModalHeader>
-              <ModalBody>
-                <BlogForm />
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </div>
+    <Dialog>
+      <DialogTrigger className="rounded-md p-1 flex justify-center items-center bg-foreground text-background my-4">
+        <span className="font-mono text-sm">Add New Blog</span>
+        <PlusIcon />
+      </DialogTrigger>
+      <DialogContent className="max-h-[90vh] overflow-hidden">
+        <DialogHeader>
+          <DialogTitle>Edit this blog</DialogTitle>
+        </DialogHeader>
+        <ScrollArea className="max-h-[calc(90vh-100px)] pr-4">
+          <DialogDescription className="pt-2">
+            <BlogForm />
+          </DialogDescription>
+        </ScrollArea>
+      </DialogContent>
+    </Dialog>
   );
 };
 

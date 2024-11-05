@@ -1,18 +1,19 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import { Input } from "@nextui-org/input";
 import "react-markdown-editor-lite/lib/index.css";
-import toast from "react-hot-toast";
 import "easymde/dist/easymde.min.css";
-import SimpleMDE from "react-simplemde-editor";
 
 import "react-quill/dist/quill.snow.css";
 import { Blog } from "@prisma/client";
+import SimpleMdeReact from "react-simplemde-editor";
 
 import SubmitButton from "./SubmitButton";
 
 import { editBlog } from "@/action/blog";
+
 type Props = {
   blog: Blog;
 };
@@ -35,7 +36,10 @@ export default function BlogEditForm({ blog }: Props) {
   };
 
   return (
-    <form action={handleFormSubmit} className="w-full mx-auto mt-8">
+    <form
+      action={handleFormSubmit}
+      className="w-full mx-auto mt-8 overflow-auto"
+    >
       <Input
         isRequired
         className="mb-4"
@@ -46,11 +50,9 @@ export default function BlogEditForm({ blog }: Props) {
       />
       <h3 className="text-default-500 text-small mb-1">Blog description</h3>
       <Input name="description" type="hidden" value={value} />
-      <SimpleMDE
+      <SimpleMdeReact
         aria-required
-        defaultValue={blog.description}
-        placeholder="Write description..."
-        value={value}
+        value={blog.description}
         onChange={setValue}
       />
       <div className="mb-4">

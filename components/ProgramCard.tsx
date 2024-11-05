@@ -128,13 +128,15 @@ export default function ProgramCard({ program }: Props) {
                 backgroundColor: getRandomColor(), // Random background color
               }}
             >
-              {program.image && (
-                <AvatarImage alt={program.name} src={program?.image} />
+              {program?.image && (
+                <AvatarImage alt={program?.name} src={program?.image} />
               )}
-              <AvatarFallback>{program.name.substring(0, 1)}</AvatarFallback>
+              <AvatarFallback>{program?.name.substring(0, 1)}</AvatarFallback>
             </Avatar>
 
-            <h1 className="text-white text-xl font-semibold">{program.name}</h1>
+            <h1 className="text-white text-xl font-semibold">
+              {program?.name}
+            </h1>
           </div>
         </header>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
@@ -143,7 +145,9 @@ export default function ProgramCard({ program }: Props) {
               <CardTitle>Summary</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">{program.summary}</p>
+              <p className="text-sm text-muted-foreground">
+                {program?.summary}
+              </p>
             </CardContent>
             <CardHeader>
               <CardTitle>References</CardTitle>
@@ -153,11 +157,11 @@ export default function ProgramCard({ program }: Props) {
                 <li>
                   <a
                     className="text-blue-500 hover:underline"
-                    href={`https://${program.reference}`}
+                    href={`https://${program?.reference}`}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    {program.reference}
+                    {program?.reference}
                   </a>
                 </li>
               </ul>
@@ -166,7 +170,7 @@ export default function ProgramCard({ program }: Props) {
 
           <div className="col-span-1 space-y-4">
             <a
-              href={`https://${program.link}`}
+              href={`https://${program?.link}`}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -177,7 +181,7 @@ export default function ProgramCard({ program }: Props) {
 
             <ScopeCard
               bgColor="bg-teal-500"
-              content={program.inScope}
+              content={program?.inScope}
               isExpanded={isInScopeExpanded}
               itemBgColor="bg-blue-900"
               itemTextColor="text-blue-100"
@@ -187,7 +191,7 @@ export default function ProgramCard({ program }: Props) {
 
             <ScopeCard
               bgColor="bg-red-700"
-              content={program.outScope}
+              content={program?.outScope}
               isExpanded={isOutOfScopeExpanded}
               itemBgColor="bg-red-900"
               itemTextColor="text-red-100"

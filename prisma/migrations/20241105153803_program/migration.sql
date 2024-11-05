@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Program" ALTER COLUMN "summary" DROP NOT NULL,
+ALTER COLUMN "reference" DROP NOT NULL,
+ALTER COLUMN "link" DROP NOT NULL;

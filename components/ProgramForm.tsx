@@ -92,7 +92,6 @@ export default function ProgramForm() {
       <Input label="Upload image" name="image" type="file" />
 
       <Input
-        isRequired
         className="mb-4"
         label="Submission Link"
         name="link"
@@ -100,10 +99,9 @@ export default function ProgramForm() {
         type="text"
       />
 
-      <Textarea isRequired label="Summary" name="summary" size="lg" />
+      <Textarea label="Summary" name="summary" size="lg" />
 
       <Input
-        isRequired
         className="mb-4"
         label="Reference Link"
         name="reference"
@@ -114,7 +112,6 @@ export default function ProgramForm() {
       <CreatableSelect<Option, true>
         key="in-scope-select"
         isMulti
-        required
         classNames={{
           control: () =>
             "border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500",
@@ -143,7 +140,6 @@ export default function ProgramForm() {
       <CreatableSelect<Option, true>
         key="out-scope-select"
         isMulti
-        required
         classNames={{
           control: () =>
             "border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500",
