@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Input } from "@nextui-org/input";
 import "react-markdown-editor-lite/lib/index.css";
 import toast from "react-hot-toast";
@@ -14,7 +14,6 @@ import { createBlog } from "@/action/blog";
 
 export default function BlogForm() {
   const [value, setValue] = useState("");
-
   const handleFormSubmit = async (formData: FormData) => {
     const res = await createBlog(formData);
 

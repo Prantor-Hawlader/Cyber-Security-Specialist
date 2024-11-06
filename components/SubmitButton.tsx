@@ -33,7 +33,7 @@ export default function SubmitButton({
         <div className="flex items-center justify-center">
           {title}{" "}
           <Spinner
-            className="mr-1"
+            className="ml-1"
             color="default"
             labelColor="foreground"
             size="sm"

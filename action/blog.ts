@@ -44,7 +44,6 @@ export async function createBlog(formData: FormData) {
     return { error: "Failed to create blog" };
   } finally {
     revalidatePath("/blog");
-    redirect("/blog");
   }
 }
 export async function editBlog(formData: FormData, id: string) {
@@ -83,7 +82,6 @@ export async function editBlog(formData: FormData, id: string) {
     return { error: "Failed to edit blog" };
   } finally {
     revalidatePath("/blog");
-    redirect("/blog");
   }
 }
 
@@ -98,6 +96,5 @@ export async function deleteBlog(id: string) {
     return { error: "Failed to delete blog" };
   } finally {
     revalidatePath(`/blog`);
-    redirect("/blog");
   }
 }

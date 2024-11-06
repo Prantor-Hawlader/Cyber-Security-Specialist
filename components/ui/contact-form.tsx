@@ -9,10 +9,10 @@ import { z } from "zod";
 import { Label } from "./label";
 import { Input } from "./input";
 import { Textarea } from "./text-area";
+import TextAnimationEffect from "./text-animation-effect";
 
 import { cn } from "@/lib/utils";
 import { EmailFormData, getEmailConfig } from "@/action/email";
-import TextAnimationEffect from "./text-animation-effect";
 
 const EmailFormSchema = z.object({
   user_name: z.string().min(1, "Name is required"),

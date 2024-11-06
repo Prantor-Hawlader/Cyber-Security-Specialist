@@ -18,8 +18,8 @@ import {
 const AddBlogBtn = () => {
   return (
     <Dialog>
-      <DialogTrigger className="rounded-md p-1 flex justify-center items-center bg-foreground text-background my-4">
-        <span className="font-mono text-sm">Add New Blog</span>
+      <DialogTrigger className="rounded-md p-2 flex justify-center items-center bg-foreground text-background my-4">
+        <span className="font-mono text-sm text-center">Add New Blog</span>
         <PlusIcon />
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-hidden">
