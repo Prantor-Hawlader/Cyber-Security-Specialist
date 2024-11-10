@@ -2,8 +2,11 @@ import dynamic from "next/dynamic";
 
 import AddProgramBtn from "@/components/AddProgramBtn";
 import prisma from "@/db/prisma";
+import { getSession } from "@/lib/session";
 
 const Programs = async () => {
+  const session = await getSession();
+
   const Companies = dynamic(() => import("@/components/Companies"), {
     ssr: false,
   });
@@ -11,8 +14,8 @@ const Programs = async () => {
 
   return (
     <div className="container text-center my-4 mx-auto space-y-4">
-      <AddProgramBtn />
-      <Companies programs={programs} />
+      {session && <AddProgramBtn />}
+      <Companies programs={programs} session={session!} />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { CopyToaster } from "@/components/ui/toaster";
+import { getSession } from "@/lib/session";
 
 export const metadata: Metadata = {
   title: {
@@ -30,11 +31,13 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSession();
+
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -46,7 +49,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <Navbar />
+            <Navbar session={session!} />
             <main className="w-full flex-grow">
               {children}
               <Toaster position="top-center" />

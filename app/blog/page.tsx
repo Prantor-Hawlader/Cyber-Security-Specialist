@@ -14,8 +14,7 @@ export default async function BlogPage() {
 
   return (
     <div className="flex flex-col items-center justify-center mt-12">
-      {/* {session && <AddBlogBtn />} */}
-      <AddBlogBtn />
+      {session && <AddBlogBtn />}
       <BlogsCover blog={blogs} />
       <Blogs blogs={blogs} session={session!} />
     </div>

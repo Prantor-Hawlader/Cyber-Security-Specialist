@@ -2,8 +2,11 @@ import React from "react";
 
 import Sample from "@/components/Sample";
 import { title } from "@/components/primitives";
+import { getSession } from "@/lib/session";
 
-const Checklist = () => {
+const Checklist = async () => {
+  const session = await getSession();
+
   return (
     <div className="mt-4">
       <div className="text-center">
@@ -11,7 +14,7 @@ const Checklist = () => {
           Pentesting Checklist
         </h1>
       </div>
-      <Sample />
+      <Sample session={session!} />
     </div>
   );
 };

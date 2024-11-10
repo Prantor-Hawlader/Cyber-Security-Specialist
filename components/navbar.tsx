@@ -11,12 +11,19 @@ import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { Session } from "next-auth";
+
+import LogoutBtn from "./LogoutBtn";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
+import { signOut } from "@/auth";
 
-export const Navbar = () => {
+type Props = {
+  session: Session;
+};
+export const Navbar = ({ session }: Props) => {
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -49,6 +56,16 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
+          {session && (
+            <form
+              action={async () => {
+                "use server";
+                await signOut();
+              }}
+            >
+              {session && <LogoutBtn>Logout</LogoutBtn>}
+            </form>
+          )}
           <ThemeSwitch />
         </NavbarItem>
         {/* <NavbarItem className="hidden md:flex">
@@ -65,6 +82,16 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+        {session && (
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <LogoutBtn>Logout</LogoutBtn>
+          </form>
+        )}
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>

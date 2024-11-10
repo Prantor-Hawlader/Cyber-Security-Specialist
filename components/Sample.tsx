@@ -5,6 +5,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
 import { ChevronDown, ChevronUp, Save, Trash2 } from "lucide-react";
 import { Button } from "@nextui-org/button";
 import { IconBug, IconNotesOff } from "@tabler/icons-react";
+import { Session } from "next-auth";
 
 import {
   Dialog,
@@ -131,7 +132,10 @@ const renderActiveShape = (props: any) => {
   );
 };
 
-export default function Sample() {
+type Props = {
+  session: Session;
+};
+export default function Sample({ session }: Props) {
   const [answers, setAnswers] = useState<Answer[][][]>(
     questions.map((q) => q.subSections.map(() => [null, null, null]))
   );
@@ -318,65 +322,68 @@ export default function Sample() {
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle className="flex justify-between items-center">
-              Saved States
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm" variant="ghost">
-                    <Save className="h-4 w-4 mr-2" />
-                    Save Current State
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Save Current State</DialogTitle>
-                  </DialogHeader>
-                  <div className="flex items-center space-x-2">
-                    <Input
-                      placeholder="Enter state name"
-                      value={newStateName}
-                      onChange={(e) => setNewStateName(e.target.value)}
-                    />
-                    <Button onClick={saveCurrentState}>Save</Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="h-[200px] overflow-y-auto">
-            {savedStates.length > 0 ? (
-              <div className="space-y-2">
-                {savedStates.map((state, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between"
-                  >
-                    <Button
-                      className="w-full justify-start mr-2"
-                      variant="ghost"
-                      onClick={() => loadSavedState(state)}
-                    >
-                      {state.name} -{state.passedPercentage.toFixed(0)}% Passed
+        {session && (
+          <Card className="md:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex justify-between items-center">
+                Saved States
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button size="sm" variant="ghost">
+                      <Save className="h-4 w-4 mr-2" />
+                      Save Current State
                     </Button>
-                    <Button
-                      className="flex-shrink-0"
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => deleteSavedState(index)}
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Save Current State</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        placeholder="Enter state name"
+                        value={newStateName}
+                        onChange={(e) => setNewStateName(e.target.value)}
+                      />
+                      <Button onClick={saveCurrentState}>Save</Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="h-[200px] overflow-y-auto">
+              {savedStates.length > 0 ? (
+                <div className="space-y-2">
+                  {savedStates.map((state, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between"
                     >
-                      <Trash2 className="h-4 w-4" />
-                      <span className="sr-only">Delete saved state</span>
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No saved states.</p>
-            )}
-          </CardContent>
-        </Card>
+                      <Button
+                        className="w-full justify-start mr-2"
+                        variant="ghost"
+                        onClick={() => loadSavedState(state)}
+                      >
+                        {state.name} -{state.passedPercentage.toFixed(0)}%
+                        Passed
+                      </Button>
+                      <Button
+                        className="flex-shrink-0"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => deleteSavedState(index)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                        <span className="sr-only">Delete saved state</span>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>No saved states.</p>
+              )}
+            </CardContent>
+          </Card>
+        )}
       </div>
       <Card>
         <CardHeader>

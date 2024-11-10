@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Program } from "@prisma/client";
+import { Session } from "next-auth";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { title } from "./primitives";
@@ -9,8 +10,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type Props = {
   programs: Program[];
+  session: Session;
 };
-export default function Companies({ programs }: Props) {
+export default function Companies({ programs, session }: Props) {
   const getRandomColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -76,7 +78,8 @@ export default function Companies({ programs }: Props) {
                 </CardContent>
               </Link>
             </Card>
-            <ProgramDelBtn companyId={company.id} />
+
+            {session && <ProgramDelBtn companyId={company.id} />}
           </div>
         ))}
       </CardContent>
