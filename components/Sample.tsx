@@ -25,70 +25,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-
-const questions = [
-  {
-    name: "Documentation",
-    question: "Is the code well-documented?",
-    subSections: [
-      {
-        name: "Inline Documentation",
-        subQuestions: [
-          { keyword: "Clarity" },
-          { keyword: "Consistency" },
-          { keyword: "Necessity" },
-        ],
-      },
-      {
-        name: "Function Documentation",
-        subQuestions: [
-          { keyword: "Completeness" },
-          { keyword: "Parameters" },
-          { keyword: "Return Values" },
-        ],
-      },
-      {
-        name: "Project Documentation",
-        subQuestions: [
-          { keyword: "README" },
-          { keyword: "Setup Instructions" },
-          { keyword: "Contribution Guidelines" },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Testing",
-    question: "Are all tests passing?",
-    subSections: [
-      {
-        name: "Unit Testing",
-        subQuestions: [
-          { keyword: "Coverage" },
-          { keyword: "Quality" },
-          { keyword: "Maintenance" },
-        ],
-      },
-      {
-        name: "Integration Testing",
-        subQuestions: [
-          { keyword: "Scope" },
-          { keyword: "Environment" },
-          { keyword: "Data" },
-        ],
-      },
-      {
-        name: "End-to-End Testing",
-        subQuestions: [
-          { keyword: "User Flows" },
-          { keyword: "Browser Compatibility" },
-          { keyword: "Performance" },
-        ],
-      },
-    ],
-  },
-  // Add more main questions here...
-];
+import { checklistData } from "@/lib/checklistData";
 
 type Answer = "passed" | "issue" | "n/a" | null;
 
@@ -137,11 +74,11 @@ type Props = {
 };
 export default function Sample({ session }: Props) {
   const [answers, setAnswers] = useState<Answer[][][]>(
-    questions.map((q) => q.subSections.map(() => [null, null, null]))
+    checklistData.map((q) => q.subSections.map(() => [null, null, null]))
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const [openSubSections, setOpenSubSections] = useState<boolean[][]>(
-    questions.map((q) => q.subSections.map(() => false))
+    checklistData.map((q) => q.subSections.map(() => false))
   );
   const [savedStates, setSavedStates] = useState<SavedState[]>([]);
   const [newStateName, setNewStateName] = useState("");
@@ -187,14 +124,14 @@ export default function Sample({ session }: Props) {
     { name: "Not Passed", value: 100 - passedPercentage },
   ];
 
-  const issueQuestions = questions.flatMap((q, i) =>
+  const issueQuestions = checklistData.flatMap((q, i) =>
     q.subSections.flatMap((ss, j) =>
       ss.subQuestions
         .filter((_, k) => answers[i][j][k] === "issue")
         .map((sq) => sq.keyword)
     )
   );
-  const naQuestions = questions.flatMap((q, i) =>
+  const naQuestions = checklistData.flatMap((q, i) =>
     q.subSections.flatMap((ss, j) =>
       ss.subQuestions
         .filter((_, k) => answers[i][j][k] === "n/a")
@@ -391,7 +328,7 @@ export default function Sample({ session }: Props) {
         </CardHeader>
         <CardContent>
           <Accordion collapsible className="w-full" type="single">
-            {questions.map((question, questionIndex) => (
+            {checklistData.map((question, questionIndex) => (
               <AccordionItem
                 key={questionIndex}
                 value={`item-${questionIndex}`}
