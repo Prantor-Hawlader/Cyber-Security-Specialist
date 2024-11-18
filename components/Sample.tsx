@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
 import { ChevronDown, ChevronUp, Save, Trash2 } from "lucide-react";
 import { Button } from "@nextui-org/button";
-import { IconBug, IconNotesOff } from "@tabler/icons-react";
+import { IconBug, IconBulb, IconNotesOff } from "@tabler/icons-react";
 import { Session } from "next-auth";
 
 import {
@@ -351,13 +351,16 @@ export default function Sample({ session }: Props) {
                         )}
                       </button>
                       {openSubSections[questionIndex][subSectionIndex] && (
-                        <div className="mt-2 ml-4 space-y-4">
+                        <div className="mt-2 space-y-4">
                           {subSection.subQuestions.map(
                             (subQuestion, subQuestionIndex) => (
                               <div key={subQuestionIndex}>
-                                <p className="font-medium mb-1">
-                                  {subQuestion.keyword}
-                                </p>
+                                <div className="flex justify-start mb-2 items-center gap-1">
+                                  <IconBulb color="green" />
+                                  <p className="font-medium">
+                                    {subQuestion.keyword}
+                                  </p>
+                                </div>
                                 <RadioGroup
                                   value={
                                     answers[questionIndex][subSectionIndex][

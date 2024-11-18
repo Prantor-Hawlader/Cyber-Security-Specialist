@@ -452,6 +452,271 @@ export const checklistData = [
       },
     ],
   },
+  {
+    name: "Testing7",
+    question: "DATA VALIDATION",
+    subSections: [
+      {
+        name: "Test For Reflected Cross Site Scripting",
+        subQuestions: [
+          {
+            keyword: "Identify the Context of the Reflected Value",
+          },
+          {
+            keyword:
+              "Verify Special Characters Depending on the Reflection Context",
+          },
+          { keyword: "Test with a Character Escape Sequence or Encoding" },
+          { keyword: "Test Input Concatenation" },
+          { keyword: "Test for Dangling Markup" },
+        ],
+      },
+      {
+        name: "Test For Stored Cross Site Scripting",
+        subQuestions: [
+          {
+            keyword:
+              "Identify Stored Inputs that Will Reflect on the Client-Side",
+          },
+          {
+            keyword: "Test Uploading a File with XSS Payload as the File Name",
+          },
+          { keyword: "Use a Payload That Interacts with Burp Collaborator" },
+        ],
+      },
+      {
+        name: "Test For HTTP Parameter Pollution",
+        subQuestions: [
+          {
+            keyword: "Test for Parameter Pollution",
+          },
+        ],
+      },
+      {
+        name: "Test for CRLF injections",
+        subQuestions: [
+          { keyword: "Identify Reflections Affected by CRLF Sequences" },
+        ],
+      },
+      {
+        name: "Test For SQL Injection",
+        subQuestions: [
+          {
+            keyword: "Try Different SQL Injection Techniques",
+          },
+          { keyword: "Automate with SQLMap" },
+        ],
+      },
+      {
+        name: "Test For NoSQL Injection",
+        subQuestions: [{ keyword: "Try Different NoSQL Injection Techniques" }],
+      },
+      {
+        name: "Test For LDAP Injection",
+        subQuestions: [{ keyword: " Use LDAP Search Filters" }],
+      },
+      {
+        name: "Testing For XML Injection",
+        subQuestions: [
+          {
+            keyword: "Identify XML Processing Points",
+          },
+          {
+            keyword: "Test with XML Metacharacters and Payloads",
+          },
+          {
+            keyword: "Test for XXE",
+          },
+        ],
+      },
+      {
+        name: "Test For SSI (Server Side Includes)",
+        subQuestions: [
+          {
+            keyword: "Use Google Dorks",
+          },
+          {
+            keyword: "Test Potential Injection Points",
+          },
+        ],
+      },
+      {
+        name: "Test For XPATH Injection",
+        subQuestions: [
+          {
+            keyword: "Test for XPATH Injection",
+          },
+        ],
+      },
+      {
+        name: "Test for IMAP SMTP Injection and Email Content HTML Injection",
+        subQuestions: [
+          {
+            keyword:
+              "Test Functionalities Related to Emails and Attempt Relevant Payloads",
+          },
+        ],
+      },
+      {
+        name: "Test For Insecure Deserialization",
+        subQuestions: [
+          {
+            keyword: "Identify Common Deserialization Entry Points",
+          },
+          {
+            keyword: "Exploit Insecure Deserialization",
+          },
+        ],
+      },
+      {
+        name: "Test for Command Injection",
+        subQuestions: [
+          {
+            keyword: "Attempt to Inject Commands by Enumeration",
+          },
+        ],
+      },
+      {
+        name: "Test for Code Injection",
+        subQuestions: [
+          {
+            keyword: "Attempt to Inject Code Based on the Backend Server",
+          },
+        ],
+      },
+      {
+        name: "Test For HTTP Splitting / Smuggling / DeSync",
+        subQuestions: [
+          {
+            keyword: "Identify User Inputs That Influence Response Headers",
+          },
+          {
+            keyword: "Attempt CRLF Header Injection",
+          },
+          {
+            keyword: "Test CL.TE, TE.CL, TE.TE Request Smuggling cases",
+          },
+        ],
+      },
+      {
+        name: "Test For Local File Inclusion",
+        subQuestions: [
+          {
+            keyword: "Look for LFI Keywords",
+          },
+          {
+            keyword: "Use LFI Payload Lists",
+          },
+          {
+            keyword: "Attempt to Elevate to RCE",
+          },
+        ],
+      },
+      {
+        name: "Test For Remote File Inclusion",
+        subQuestions: [
+          {
+            keyword: "Use RFI Payload Lists",
+          },
+        ],
+      },
+      {
+        name: "Test For Host Header Injection",
+        subQuestions: [
+          {
+            keyword: "HOST Related Headers Manipulation",
+          },
+          {
+            keyword: "Test for Password Reset Link Poisoning",
+          },
+        ],
+      },
+      {
+        name: "Test For Server Side Request Forgery",
+        subQuestions: [
+          {
+            keyword: "Identify SSRF Enty Points",
+          },
+          {
+            keyword: "Test Exploitability",
+          },
+        ],
+      },
+      {
+        name: "Test For Server-Side Template Injection",
+        subQuestions: [
+          {
+            keyword: "Identify Template Injection Entry Points",
+          },
+          {
+            keyword: "Identify Template",
+          },
+          {
+            keyword: "Exploit Based on the Template Engine",
+          },
+        ],
+      },
+      {
+        name: "Test GraphQL Injection",
+        subQuestions: [
+          {
+            keyword: "Check for GraphQL Instances",
+          },
+          {
+            keyword: "Test Universal Queries",
+          },
+          {
+            keyword: "Enumerate Data via Introspection",
+          },
+
+          {
+            keyword: "Extract Values",
+          },
+        ],
+      },
+      {
+        name: "Test For Arbitrary File Upload",
+        subQuestions: [
+          {
+            keyword: "Test by Uploading Various Types of Malicious Files",
+          },
+          {
+            keyword: "Injecting Payloads via File Name and Related Fields",
+          },
+          {
+            keyword: "Change File Extensions",
+          },
+
+          {
+            keyword:
+              "Check That Uploaded Files are Not Directly Accessible Within the Web Root",
+          },
+        ],
+      },
+      {
+        name: "Test For Formula Injection",
+        subQuestions: [
+          {
+            keyword: "Test for Formula Injections",
+          },
+        ],
+      },
+      {
+        name: "LLM Manipulation",
+        subQuestions: [
+          {
+            keyword: "Test for Jailbreak",
+          },
+          {
+            keyword: "Test for Prompt Injection",
+          },
+          {
+            keyword: "Test for Data Poisoning",
+          },
+        ],
+      },
+    ],
+  },
 
   {
     name: "Testing8",
@@ -567,5 +832,4 @@ export const checklistData = [
       },
     ],
   },
-  // Add more main questions here...
 ];
