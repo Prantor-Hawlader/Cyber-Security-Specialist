@@ -8,7 +8,6 @@ import Image from "next/image";
 import ContactBtn from "@/components/ContactBtn";
 import { title } from "@/components/primitives";
 import KamrulImage from "@/public/kamrul.jpg";
-import Example from "@/components/example";
 export default function AboutPage() {
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -22,7 +21,6 @@ export default function AboutPage() {
             Cybersecurity Specialist | Ethical Hacker | Security Consultant
           </p>
         </header>
-        <Example />
 
         <section className="space-y-6">
           <p className="text-lg leading-relaxed">
