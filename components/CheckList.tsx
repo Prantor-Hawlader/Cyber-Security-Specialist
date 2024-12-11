@@ -72,7 +72,7 @@ const renderActiveShape = (props: any) => {
 type Props = {
   session: Session;
 };
-export default function Sample({ session }: Props) {
+export default function CheckList({ session }: Props) {
   const [answers, setAnswers] = useState<Answer[][][]>(
     checklistData.map((q) => q.subSections.map(() => [null, null, null]))
   );

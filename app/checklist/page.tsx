@@ -1,8 +1,8 @@
 import React from "react";
 
-import Sample from "@/components/Sample";
 import { title } from "@/components/primitives";
 import { getSession } from "@/lib/session";
+import CheckList from "@/components/CheckList";
 
 const Checklist = async () => {
   const session = await getSession();
@@ -14,7 +14,7 @@ const Checklist = async () => {
           Pentesting Checklist
         </h1>
       </div>
-      <Sample session={session!} />
+      <CheckList session={session!} />
     </div>
   );
 };
